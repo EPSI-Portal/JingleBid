@@ -1,13 +1,12 @@
 // Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
+import '@mdi/font/css/materialdesignicons.css';
+import 'vuetify/styles';
 
 // Vuetify
-import { createVuetify } from 'vuetify'
+import { createVuetify } from 'vuetify';
 
-
-import { aliases, fa } from 'vuetify/iconsets/fa'
-import { fr, en } from 'vuetify/locale'
+import { aliases, fa } from 'vuetify/iconsets/fa';
+import { fr, en } from 'vuetify/locale';
 
 export default createVuetify({
 	// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
@@ -15,14 +14,14 @@ export default createVuetify({
 		defaultSet: 'fa',
 		aliases,
 		sets: {
-			fa
-		}
+			fa,
+		},
 	},
 
 	locale: {
 		locale: 'fr',
 		fallback: 'en',
-		messages: { fr }
+		messages: { fr },
 	},
 
 	theme: {
@@ -36,8 +35,8 @@ export default createVuetify({
 				success: '#3AF2A2',
 				info: '#03DDCB',
 				warning: '#FB8C00',
-				error: '#FF6C5C'
-			}
-		}
-	}
-})
+				error: '#FF6C5C',
+			},
+		},
+	},
+});
