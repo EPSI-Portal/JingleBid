@@ -30,6 +30,9 @@ Vue.prototype.$fieldsRules = fieldsRules;
 
 Vue.prototype.$models = models;
 
+import axios_ from "axios";
+Vue.prototype.$axios = axios_;
+
 import moment_ from "moment";
 Vue.prototype.$moment = moment_;
 moment_.locale('fr');
