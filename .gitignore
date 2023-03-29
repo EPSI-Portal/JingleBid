@@ -24,3 +24,7 @@ pnpm-debug.log*
 *.sw?
 .dccache
 .env
+
+# Misc
+package-lock.json
+yarn.lock
