@@ -1,28 +1,39 @@
 {
-  "name": "base",
-  "version": "0.1.0",
+  "name": "jinglebid",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "engines": {
+    "node": "17"
+  },
   "dependencies": {
+    "@firebase/firestore": "~1.18.0",
+    "ansi-regex": "~6.0.1",
     "axios": "^1.3.4",
+    "firebase": "~7.24.0",
+    "moment": "~2.29.2",
+    "uuid": "~8.3.2",
+    "vue": "~2.6.14",
+    "vue-router": "~3.5.4",
+    "vuetify": "~2.4.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "^3.1.1",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "^3.12.1",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "sass": "~1.32.0",
-    "sass-loader": "^10.0.0",
-    "vue-cli-plugin-vuetify": "~2.4.1",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.7.0"
+    "@vue/cli-plugin-babel": "~4.5.19",
+    "@vue/cli-plugin-eslint": "~3.1.15",
+    "@vue/cli-plugin-vuex": "~4.5.19",
+    "@vue/cli-service": "~3.12.1",
+    "babel-eslint": "~10.1.0",
+    "eslint": "~6.7.2",
+    "eslint-plugin-vue": "~6.2.2",
+    "sass": "~1.32.13",
+    "sass-loader": "~10.0.5",
+    "vue-cli-plugin-vuetify": "~2.4.8",
+    "vue-template-compiler": "~2.6.14",
+    "vuetify-loader": "~1.7.3"
   },
   "eslintConfig": {
     "root": true,
