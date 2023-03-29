@@ -1,10 +1,10 @@
-# TriBidO
+# JingleBid
 
-## Stack : Vue Firebase Vuetify
+## Stack : Vue x Vite ; Firebase ; Vuetify
 
 
 ### Installation
 
-- ``npm install``
+- ``yarn install``
 
-- ``npm run serve``
+- ``yarn dev``
