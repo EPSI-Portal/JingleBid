@@ -9,9 +9,16 @@ import axios from 'axios';
 import moment_ from 'moment';
 moment_.locale('fr');
 
+import { firebase, db, auth } from './firebase/firebaseInit';
+
 loadFonts();
 
-const app = createApp(App).use(router).use(vuetify).mount('#app');
+const app = createApp(App);
 
-app.config.globalProperties.$_moment = moment_;
-app.config.globalProperties.$_axios = axios;
+app.provide("$db", db);
+app.provide("$firebase", firebase);
+app.provide("$auth", auth);
+
+app.use(router)
+	.use(vuetify)
+	.mount('#app');
