@@ -5,8 +5,11 @@ import 'vuetify/styles';
 // Vuetify
 import { createVuetify } from 'vuetify';
 
+import '@fortawesome/fontawesome-free/css/all.css';
 import { aliases, fa } from 'vuetify/iconsets/fa';
-import { fr, en } from 'vuetify/locale';
+import { mdi } from 'vuetify/iconsets/mdi';
+import { fr } from 'vuetify/locale';
+
 
 export default createVuetify({
 	// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
@@ -15,6 +18,7 @@ export default createVuetify({
 		aliases,
 		sets: {
 			fa,
+			mdi,
 		},
 	},
 
