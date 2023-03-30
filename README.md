@@ -4,7 +4,7 @@
 
 ### 🧩 Versions
 
-Node: **Version 19**
+Node: [Version 19](https://nodejs.org/en)
 
 Yarn/NPM: Latest
 
