@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Header title="Soumettre une enchère"></Header>
+		<HeaderComponent title="Soumettre une enchère"></HeaderComponent>
 
 		<v-row justify="center">
 			<v-col cols="12" sm="6">
@@ -8,13 +8,13 @@
 					<v-card-title>Titre</v-card-title>
 
 					<v-card-text>
-						<v-text-field v-model="bid.name" class="mt-0 pt-0"></v-text-field>
+						<v-text-field variant="underlined" v-model="bid.name" class="mt-0 pt-0"></v-text-field>
 					</v-card-text>
 				</v-card>
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert border="top" colored-border type="info" class="glass">
+				<v-alert type="info" variant="tonal" color="white">
 					Ajoutez des détails tels que la marque, la couleur, la taille, les caractéristiques, l'état, etc.
 				</v-alert>
 			</v-col>
@@ -27,13 +27,13 @@
 
 					<v-card-text>
 						<h3 class="font-weight-regular">État de votre bien</h3>
-						<v-select class="mt-0 pt-0" v-model="bid.condition" :items="['État neuf', 'Très bon état', 'Bon état', 'État satisfaisant']"></v-select>
+						<v-select class="mt-0 pt-0" v-model="bid.condition" variant="underlined" :items="['État neuf', 'Très bon état', 'Bon état', 'État satisfaisant']"></v-select>
 					</v-card-text>
 				</v-card>
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert border="top" colored-border type="info" class="glass">
+				<v-alert type="info" variant="tonal" color="white">
 					Les acheteurs ont besoin de ces détails pour trouver votre objet.
 				</v-alert>
 			</v-col>
@@ -49,13 +49,13 @@
 					<v-card-title>Description courte</v-card-title>
 
 					<v-card-text>
-						<v-textarea v-model="bid.shortDesc" class="mt-0 pt-0" rows="2"></v-textarea>
+						<v-textarea v-model="bid.shortDesc" variant="underlined" class="mt-0 pt-0" rows="2"></v-textarea>
 					</v-card-text>
 				</v-card>
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert border="top" colored-border type="info" class="glass">
+				<v-alert type="info" variant="tonal" color="white">
 					Utilisez cette description pour accrocher l'acheteur.
 				</v-alert>
 			</v-col>
@@ -66,13 +66,13 @@
 					<v-card-title>Description longue</v-card-title>
 
 					<v-card-text>
-						<v-textarea v-model="bid.longDesc" class=" mt-0 pt-0"></v-textarea>
+						<v-textarea v-model="bid.longDesc" variant="underlined" class=" mt-0 pt-0"></v-textarea>
 					</v-card-text>
 				</v-card>
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert border="top" colored-border type="info" class="glass">
+				<v-alert type="info" variant="tonal" color="white">
 					Décrivez les caractéristiques uniques de votre objet, ses défauts et la raison pour laquelle vous le vendez.
 				</v-alert>
 			</v-col>
@@ -84,11 +84,11 @@
 					<v-card-text>
 						<v-row>
 							<v-col cols="12" sm="6">
-								<v-file-input truncate-length="15" v-model="importIMG.main" @change="uploadMainImage" accept="image/*" class="mt-0 pt-0"></v-file-input>
+								<v-file-input truncate-length="15" variant="underlined" v-model="importIMG.main" @change="uploadMainImage" accept="image/*" class="mt-0 pt-0"></v-file-input>
 								<v-img v-if="bid.img.main" :src="bid.img.main" contain></v-img>
 							</v-col>
 							<v-col cols="12" sm="6">
-								<v-file-input truncate-length="15" v-model="importIMG.secondary" @change="uploadSecondaryImage" accept="image/*" class="mt-0 pt-0"></v-file-input>
+								<v-file-input truncate-length="15" variant="underlined" v-model="importIMG.secondary" @change="uploadSecondaryImage" accept="image/*" class="mt-0 pt-0"></v-file-input>
 								<v-img v-if="bid.img.secondary" :src="bid.img.secondary" contain></v-img>
 							</v-col>
 						</v-row>
@@ -97,7 +97,7 @@
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert border="top" colored-border type="info" class="glass">
+				<v-alert type="info" variant="tonal" color="white">
 					Vous pouvez ajouter jusqu'à 2 photos pour inspirer confiance aux acheteurs.
 				</v-alert>
 			</v-col>
@@ -114,16 +114,16 @@
 
 					<v-card-text>
 						<v-row>
-							<v-col cols="12">
-								<v-text-field class="mt-0 pt-0 col-6 pl-1" v-model="bid.prices.actual" type=" number" suffix="€" prepend-icon="fa fa-euro" label="Prix de départ"></v-text-field>
+							<v-col cols="4">
+								<v-text-field variant="underlined" class="mt-0 pt-0 col-6 pl-1" v-model="bid.prices.actual" type=" number" suffix="€" prepend-icon="fa fa-euro" label="Prix de départ"></v-text-field>
 							</v-col>
 							<v-col cols="12">
 
 								<v-row class="px-2">
 									<v-col cols="12" sm="6">
-										<v-dialog ref="dateDialog" v-model="modals.datePicker" :return-value.sync="date" width="290px">
+										<v-dialog ref="dateDialog" v-model="modals.datePicker" v-model:return-value="date" width="290px">
 											<template v-slot:activator="{ on, attrs }">
-												<v-text-field v-model="dateFormatted" label="Date de fin de l'enchère" @blur="date = parseDate(dateFormatted)" prepend-icon="far fa-calendar" readonly v-bind="attrs" v-on="on">
+												<v-text-field variant="underlined" v-model="dateFormatted" label="Date de fin de l'enchère" @blur="date = parseDate(dateFormatted)" prepend-icon="far fa-calendar" readonly v-bind="attrs" v-on="on">
 												</v-text-field>
 											</template>
 											<v-date-picker v-model="date" scrollable>
@@ -141,7 +141,7 @@
 									<v-col cols="12" sm="6">
 										<v-dialog ref="timeDialog" v-model="modals.timePicker" :return-value.sync="time" width="290px">
 											<template v-slot:activator="{ on, attrs }">
-												<v-text-field v-model="time" label="Heure de fin de l'enchère" prepend-icon="far fa-clock" readonly v-bind="attrs" v-on="on">
+												<v-text-field variant="underlined" v-model="time" label="Heure de fin de l'enchère" prepend-icon="far fa-clock" readonly v-bind="attrs" v-on="on">
 												</v-text-field>
 											</template>
 											<v-time-picker v-if="modals.timePicker" v-model="time" full-width format="24hr">
@@ -164,7 +164,7 @@
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert border="top" colored-border type="info" class="glass">
+				<v-alert type="info" variant="tonal" color="white">
 					Fixez un prix de départ pour votre enchère et laissez jouer la concurrence.
 				</v-alert>
 			</v-col>
@@ -185,14 +185,15 @@
 </style>
 
 <script>
-	import Header from "@/components/graphics/Header";
+	import HeaderComponent from "@/components/HeaderComponent.vue";
 	import { v4 as uuidv4 } from 'uuid';
 
 	export default {
-		name: "Offer",
+		name: "CreateBidPage",
+		inject: ["$models"],
 
 		components: {
-			Header
+			HeaderComponent
 		},
 
 		data() {
@@ -208,7 +209,7 @@
 					datePicker: false,
 					timePicker: false
 				},
-				
+
 				date: '',
 				dateFormatted: '',
 				time: '23:59'
@@ -273,7 +274,7 @@
 
 				var uploadTask = storage.ref(`${this.$firebase.auth().currentUser.uid}/bid_src/${uuidv4()}`).put(file);
 
-				uploadTask.on('state_changed', 
+				uploadTask.on('state_changed',
 					(snapshot) => {
 						this.imagesLoading = true;
 

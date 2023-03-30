@@ -8,35 +8,35 @@
 				<v-row class="mt-5">
 					<v-col v-for="item in items" :key="item.name" cols="12" class="my-3">
 						<template v-if="String($route.path) == item.url">
-							<v-icon color="primary" v-bind:large="$vuetify.breakpoint.mdAndUp" style="cursor: pointer;">
+							<v-icon color="primary" v-bind:large="mdAndUp" style="cursor: pointer;">
 								{{ item.icon }}
 							</v-icon>
 
-							<h5 class="primary--text">{{ item.name }}</h5>
+							<h5 class="text-primary">{{ item.name }}</h5>
 						</template>
 						<template v-else>
-							<v-icon color="accent" v-bind:large="$vuetify.breakpoint.mdAndUp" style="cursor: pointer;" @click="$router.push(item.url)">
+							<v-icon color="accent" v-bind:large="mdAndUp" style="cursor: pointer;" @click="$router.push(item.url)">
 								{{ item.icon }}
 							</v-icon>
 
-							<h5 class="grey--text">{{ item.name }}</h5>
+							<h5 class="text-grey">{{ item.name }}</h5>
 						</template>
 					</v-col>
 				</v-row>
 
 				<div class="userIcons">
-					<v-col cols="12" class="mt-12 pt-12" v-if="user">
-						<v-icon v-if="String($route.path) == '/account'" color="primary" v-bind:large="$vuetify.breakpoint.mdAndUp" style="cursor: pointer;">
+					<v-col cols="12" class="mt-12 pt-12" v-if="user !== null">
+						<v-icon v-if="String($route.path) == '/account'" color="primary" v-bind:large="mdAndUp" style="cursor: pointer;">
 							far fa-user-circle
 						</v-icon>
-						<v-icon v-else color="accent" v-bind:large="$vuetify.breakpoint.mdAndUp" style="cursor: pointer;" @click="$router.push('/account')">
+						<v-icon v-else color="accent" v-bind:large="mdAndUp" style="cursor: pointer;" @click="$router.push('/account')">
 							far fa-user-circle
 						</v-icon>
 
 						<v-spacer class="mt-3"></v-spacer>
 						<v-tooltip right>
 							<template v-slot:activator="{ on, attrs }">
-								<v-icon v-bind="attrs" v-on="on" :class="{'accent--text': String($route.path) != '/profile', 'primary--text': String($route.path) == '/profile'}" style="cursor: pointer;" @click="$router.push('/profile')">
+								<v-icon v-bind="attrs" v-on="on" :class="{'text-accent': String($route.path) != '/profile', 'text-primary': String($route.path) == '/profile'}" style="cursor: pointer;" @click="$router.push('/profile')">
 									far fa-address-card
 								</v-icon>
 							</template>
@@ -53,10 +53,10 @@
 						</v-tooltip>
 					</v-col>
 					<v-col cols="12" class="mt-12 pt-12" v-else>
-						<v-icon v-if="String($route.path) == '/login' || String($route.path) == '/register'" color="primary" v-bind:large="$vuetify.breakpoint.mdAndUp" style="cursor: pointer;">
+						<v-icon v-if="String($route.path) == '/login' || String($route.path) == '/register'" color="primary" v-bind:large="mdAndUp" style="cursor: pointer;">
 							fa fa-sign-in
 						</v-icon>
-						<v-icon v-else color="accent" v-bind:large="$vuetify.breakpoint.mdAndUp" style="cursor: pointer;" @click="$router.push('/login')">
+						<v-icon v-else color="accent" v-bind:large="mdAndUp" style="cursor: pointer;" @click="$router.push('/login')">
 							fa fa-sign-in
 						</v-icon>
 					</v-col>
@@ -186,7 +186,7 @@
 
 	/* Glassmorphism card effect */
 	.glasscard {
-		background: rgba( 255, 255, 255, 0.65 )!important;
+		background: rgba( 255, 255, 255, 0.35 )!important;
 		box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )!important;
 		backdrop-filter: blur( 4px )!important;
 		-webkit-backdrop-filter: blur( 4px )!important;
@@ -206,33 +206,54 @@
 </style>
 
 <script>
-	export default {
-		name: 'App',
+import { useDisplay } from 'vuetify';
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
-		data: () => ({
-			items: [
-				{ name: 'Accueil', icon: 'fa fa-list-alt', url: '/' },
-				{ name: 'Produits', icon: 'fa fa-th', url: '/products' },
-				{ name: 'Ajouter une enchère', icon: 'fas fa-plus', url: '/createBid' }
-			],
+export default {
+	name: 'App',
+	inject: ['$auth', "$firebase"],
 
-			user: {}
-		}),
+	data: () => ({
+		items: [
+			{ name: 'Accueil', icon: 'fa fa-list-alt', url: '/' },
+			{ name: 'Produits', icon: 'fa fa-th', url: '/products' },
+			{ name: 'Ajouter une enchère', icon: 'fas fa-plus', url: '/createBid' }
+		],
 
-		created() {
-			this.user = this.$firebase.auth().currentUser;
-		},
+		user: null
+	}),
 
-		methods: {
-			async logout() {
-				try {
-					await this.$firebase.auth().signOut();
-					this.$router.push('/login');
-				} catch (err) {
-					console.log(err);
-				}	
+	setup () {
+		const { mdAndUp } = useDisplay()
+
+		return { mdAndUp }
+	},
+
+	created() {
+		this.user = this.$auth.currentUser;
+
+		onAuthStateChanged(getAuth(), (user) => {
+			if (user) this.user = user;
+			else this.user = null;
+		});
+	},
+
+	watch: {
+		user: function () {
+			console.log(this.user);
+		}
+	},
+
+	methods: {
+		async logout() {
+			try {
+				await signOut(getAuth());
+				this.$router.push('/login');
+			} catch (err) {
+				console.log(err);
 			}
 		}
-	};
+	}
+};
 
 </script>

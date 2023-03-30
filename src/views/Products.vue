@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Header title="Enchères en cours"></Header>
+		<HeaderComponent title="Enchères en cours"></HeaderComponent>
 
 		<v-row>
 			<v-col cols="12">
@@ -15,7 +15,7 @@
 					<v-col cols="12">
 						<v-card>
 							<v-card-text>
-								<h1 class="font-weight-regular black--text">Filtres</h1>
+								<h1 class="font-weight-regular text-black">Filtres</h1>
 							</v-card-text>
 						</v-card>
 					</v-col>
@@ -37,14 +37,15 @@
 </style>
 
 <script>
-import Header from "@/components/graphics/Header";
-import Product from "@/components/Product";
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import Product from "@/components/Product.vue";
 
 export default {
-	name: "Products",
+	name: "ProductsPage",
+	inject: ["$models"],
 
 	components: {
-		Header,
+		HeaderComponent,
 		Product
 	},
 
@@ -60,8 +61,8 @@ export default {
 	},
 
 	created() {
-		this.data = [];
-		this.$db.collection("products").onSnapshot((res) => {
+		//TODO: Get products
+		/*this.$db.collection("products").onSnapshot((res) => {
 			res.forEach((doc) => {
 				this.data.push({
 					...this.$models.bid,
@@ -69,7 +70,7 @@ export default {
 					id: doc.id
 				});
 			});
-		});
+		});*/
 	}
 }
 </script>

@@ -1,44 +1,46 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib/framework';
+// Styles
+import '@mdi/font/css/materialdesignicons.css';
+import 'vuetify/styles';
 
-import fr from 'vuetify/es5/locale/fr';
-import en from 'vuetify/es5/locale/en';
+// Vuetify
+import { createVuetify } from 'vuetify';
 
-Vue.use(Vuetify);
+import '@fortawesome/fontawesome-free/css/all.css';
+import { aliases, fa } from 'vuetify/iconsets/fa';
+import { mdi } from 'vuetify/iconsets/mdi';
+import { fr } from 'vuetify/locale';
 
-export default new Vuetify({
-	treeShake: true,
+
+export default createVuetify({
+	// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 	icons: {
-		iconfont: 'fa'
-	},
-	theme: {
-		dark: false,
-		themes: {
-			dark: {
-				primary: '#0077FE',
-				accent: '#FFCAB1',
-				secondary: '#02AAE5',
-				success: '#3AF2A2',
-				info: '#03DDCB',
-				warning: '#FB8C00',
-				error: '#FF6C5C'
-			},
-			light: {
-				primary: '#0077FE',
-				accent: '#FFCAB1',
-				secondary: '#02AAE5',
-				success: '#3AF2A2',
-				info: '#03DDCB',
-				warning: '#FB8C00',
-				error: '#FF6C5C'
-			}
-		}
-	},
-	lang: {
-		locales: {
-			fr,
-			en
+		defaultSet: 'fa',
+		aliases,
+		sets: {
+			fa,
+			mdi,
 		},
-		current: 'fr'
-	}
+	},
+
+	locale: {
+		locale: 'fr',
+		fallback: 'en',
+		messages: { fr },
+	},
+
+	theme: {
+		defaultTheme: 'light',
+		themes: {
+			dark: false,
+			colors: {
+				primary: '#0077FE',
+				accent: '#FFCAB1',
+				secondary: '#02AAE5',
+				success: '#3AF2A2',
+				info: '#03DDCB',
+				warning: '#FB8C00',
+				error: '#FF6C5C',
+			},
+		},
+	},
 });

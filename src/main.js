@@ -1,20 +1,16 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
-
-import router from "./router";
-
+import router from './router';
 import vuetify from './plugins/vuetify';
+import { loadFonts } from './plugins/webfontloader';
 
-// IMPORT FIREBASE
-import firebase from "firebase/app";
-import db from "@/components/firebaseInit";
-import "firebase/auth";
-import "firebase/firestore";
+import axios from 'axios';
 
-Vue.prototype.$db = db;
-Vue.prototype.$firebase = firebase;
+import moment_ from 'moment';
+moment_.locale('fr');
 
-Vue.config.productionTip = false;
+import { firebase, db, auth } from './firebase/firebaseInit';
+
 
 // IMPORT VARIABLES GLOBALES
 import { appConfig } from "@/components/toLoad/appConfig";
@@ -23,24 +19,24 @@ import { functions } from "@/components/toLoad/functions";
 import { fieldsRules } from "@/components/toLoad/fieldsRules";
 import { models } from "@/components/toLoad/models";
 
-Vue.prototype.$appConfig = appConfig;
+loadFonts();
 
-Vue.prototype.$functions = functions;
-Vue.prototype.$fieldsRules = fieldsRules;
+const app = createApp(App);
 
-Vue.prototype.$models = models;
+app.provide("$_moment", moment_);
+app.provide("$_axios", axios);
 
-import axios_ from "axios";
-Vue.prototype.$axios = axios_;
+app.provide("$db", db);
+app.provide("$firebase", firebase);
+app.provide("$auth", auth);
 
-import moment_ from "moment";
-Vue.prototype.$moment = moment_;
-moment_.locale('fr');
+app.provide("$appConfig", appConfig);
 
-firebase.auth().onAuthStateChanged(() => {
-	new Vue({
-		vuetify,
-		router,
-		render: h => h(App)
-	}).$mount("#app");
-});
+app.provide("$functions", functions);
+app.provide("$fieldsRules", fieldsRules);
+
+app.provide("$models", models);
+
+app.use(router)
+	.use(vuetify)
+	.mount('#app');

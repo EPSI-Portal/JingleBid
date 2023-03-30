@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-sheet class="mx-auto glasscard smolcard">
-			<v-img v-if="product.img.main" class="white--text" height="15vh" :src="product.img.main">
+			<v-img v-if="product.img.main" class="text-white" height="15vh" :src="product.img.main">
 
 				<v-card-title class="pb-0 pt-2"><span class="d-inline-block text-truncate" style="max-width: 95%">{{ product.name }}</span></v-card-title>
 
@@ -41,7 +41,7 @@
 							<v-tooltip bottom color="glass">
 								<template v-slot:activator="{ on, attrs }">
 									<v-btn text icon color="accent" v-bind="attrs" v-on="on" small>
-										<v-icon small>far fa-bell</v-icon>
+										<v-icon size="small">far fa-bell</v-icon>
 									</v-btn>
 								</template>
 								<span>Créer un suivi</span>
@@ -51,7 +51,7 @@
 							<v-tooltip bottom color="glass">
 								<template v-slot:activator="{ on, attrs }">
 									<v-btn text icon color="pink" v-bind="attrs" v-on="on" small>
-										<v-icon small>far fa-heart</v-icon>
+										<v-icon size="small">far fa-heart</v-icon>
 									</v-btn>
 								</template>
 								<span>Ajouter aux favoris</span>
@@ -61,16 +61,16 @@
 				</v-col>
 			</v-row>
 		</v-sheet>
-		
+
 		<v-bottom-sheet v-model="placeBid">
 			<v-sheet class="glasscard pa-5" style="padding-left: 15.5vw!important;">
 				<v-row>
 					<v-col cols="12" md="4">
 						<v-card class="mx-auto">
-							<v-img class="white--text align-end" height="200px" :src="product.img.main" style="background-color: black;">
-								<v-card-title class="pb-0" v-bind:class="{'black--text': !product.img.main}">{{ product.name }}</v-card-title>
+							<v-img class="text-white align-end" height="200px" :src="product.img.main" style="background-color: black;">
+								<v-card-title class="pb-0" v-bind:class="{'text-black': !product.img.main}">{{ product.name }}</v-card-title>
 
-								<v-card-text align="left" v-bind:class="{'black--text': !product.img.main}">
+								<v-card-text align="left" v-bind:class="{'text-black': !product.img.main}">
 									<div class="text-subtitle-1 overline">
 										<span class="caption">Prix actuel</span> {{ Number(product.prices.actual).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€ • <span class="caption">Prix de départ</span> {{ Number(product.prices.start).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€
 									</div>

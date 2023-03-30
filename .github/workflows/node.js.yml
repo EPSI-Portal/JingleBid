@@ -1,0 +1,61 @@
+name: Node.js CI
+
+on: [push]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 19.x
+    - name: Install Yarn
+      run: npm install -D yarn@latest
+    - name: Install dependencies
+      run: yarn install
+    - name: Install Vite CLI
+      run: yarn add -D vite@latest
+
+  build:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 19.x
+    - name: Restore cached node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install dependencies
+      run: yarn install
+    - name: Build
+      run: yarn build
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 19.x
+    - name: Restore cached node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install dependencies
+      run: yarn install
+    - name: Lint check
+      run: yarn lint

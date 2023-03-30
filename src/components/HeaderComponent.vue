@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="title" v-if="!noTitle">
-			<h1 class="white--text font-weight-medium">{{ title }}</h1>
+			<h1 class="text-white font-weight-medium">{{ title }}</h1>
 		</div>
 	</div>
 </template>
@@ -49,7 +49,7 @@
 
 <script>
 	export default {
-		name: "Header",
+		name: "HeaderComponent",
 		props: {
 			title: {
 				type: String

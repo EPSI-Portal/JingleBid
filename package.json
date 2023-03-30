@@ -1,57 +1,42 @@
 {
-  "name": "jinglebid",
+  "name": "jingle-bid",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "engines": {
-    "node": "17"
+    "serve": "vite preview",
+    "build": "vite build",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "dev": "vite",
+    "format": "prettier --write src/",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@firebase/firestore": "~1.18.0",
-    "ansi-regex": "~6.0.1",
+    "@firebase/firestore": "^3.9.0",
+    "@mdi/font": "5.9.55",
     "axios": "^1.3.4",
-    "firebase": "~7.24.0",
-    "moment": "~2.29.2",
-    "uuid": "~8.3.2",
-    "vue": "~2.6.14",
-    "vue-router": "~3.5.4",
-    "vuetify": "~2.4.11"
+    "firebase": "^9.18.0",
+    "moment": "^2.29.4",
+    "roboto-fontface": "*",
+    "uuid": "^9.0.0",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6",
+    "vuetify": "^3.0.0-beta.0",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.19",
-    "@vue/cli-plugin-eslint": "~3.1.15",
-    "@vue/cli-plugin-vuex": "~4.5.19",
-    "@vue/cli-service": "~3.12.1",
-    "babel-eslint": "~10.1.0",
-    "eslint": "~6.7.2",
-    "eslint-plugin-vue": "~6.2.2",
-    "sass": "~1.32.13",
-    "sass-loader": "~10.0.5",
-    "vue-cli-plugin-vuetify": "~2.4.8",
-    "vue-template-compiler": "~2.6.14",
-    "vuetify-loader": "~1.7.3"
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@rushstack/eslint-patch": "^1.2.0",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "eslint": "^8.34.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "prettier": "^2.8.4",
+    "vite": "^4.1.4",
+    "vite-plugin-vuetify": "^1.0.0-alpha.12",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "yarn": "^1.22.19"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "engines": {
+    "node": "19"
+  }
 }

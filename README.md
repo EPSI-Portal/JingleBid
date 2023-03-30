@@ -1,10 +1,23 @@
-# TriBidO
+# 🎅🏽 JingleBid
 
-## Stack : Vue Firebase Vuetify
+## 🧱 Stack : Vue x Vite ; Firebase ; Vuetify
 
+### 🧩 Versions
 
-### Installation
+Node: [Version 19](https://nodejs.org/en)
 
-- ``npm install``
+Yarn/NPM: Latest
 
-- ``npm run serve``
+### 🏗️ Installation
+
+- ``yarn install``
+
+### 👨🏽‍💻 Utilisation
+
+#### Développement
+
+- ``yarn dev``
+
+#### Production
+
+- ``yarn serve``

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Header :title="data.name"></Header>
+		<HeaderComponent :title="data.name"></HeaderComponent>
 		<v-row>
 			<v-col cols="8">
 				<v-card class="glasscard">
@@ -82,7 +82,7 @@
 					</v-card-title>
 					<v-row>
 						<v-col cols="12" sm="6">
-							<v-text-field :label="`Proposez un prix (> ${data.prices.actual}€)`" :min="Number(data.prices.actual)" suffix="€" type="number" auto-grow rows="1" class="mx-3 py-0"></v-text-field>
+							<v-text-field variant="underlined" :label="`Proposez un prix (> ${data.prices.actual}€)`" :min="Number(data.prices.actual)" suffix="€" type="number" auto-grow rows="1" class="mx-3 py-0"></v-text-field>
 						</v-col>
 						<v-col cols="12" sm="6" class="pt-1">
 							<v-checkbox v-model="anonymCheckbox" label="Je préfère être anonyme" class="ml-4 py-0"></v-checkbox>
@@ -112,15 +112,11 @@
 	</div>
 </template>
 
-<style>
-
-</style>
-
 <script>
-	import Header from "@/components/graphics/Header";
+	import HeaderComponent from "@/components/HeaderComponent.vue";
 
 	export default {
-		name: "Product",
+		name: "ProductPage",
 
 		props: {
 			id: {
@@ -129,7 +125,7 @@
 		},
 
 		components: {
-			Header
+			HeaderComponent
 		},
 
 		data() {
@@ -141,12 +137,13 @@
 			}
 		},
 
-		created() {
-			this.$db.collection("products").doc(this.id).get().then((res) => {
+	created() {
+			//TODO: Get product
+			/*this.$db.collection("products").doc(this.id).get().then((res) => {
 				this.data = res.data();
 
 				this.images = [this.data.img.main, this.data.img.secondary];
-			});
+			});*/
 		}
 	}
 

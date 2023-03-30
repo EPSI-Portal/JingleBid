@@ -1,17 +1,17 @@
 <template>
 	<div>
-		<v-card class="mx-auto glasscard white--text">
+		<v-card class="mx-auto glasscard text-white">
 			<v-img v-if="product.img.main" height="20vh" :src="product.img.main"></v-img>
 
 			<v-card-title class="pb-0">{{ product.name }}</v-card-title>
 
 			<v-card-text>
-				<div class="text-subtitle-1 primary--text">
+				<div class="text-subtitle-1 text-primary">
 					{{ product.prices.actual.toLocaleString(undefined, {minimumFractionDigits: 2}) }}€
 					• {{ Math.round(Math.random() * 10) }} enchères
 					• Il reste {{ $moment().to(product.timeOptions.bidStopTime, true) }}
 				</div>
-				<div class="primary--text">
+				<div class="text-primary">
 					Fin de l'enchère le {{ $moment(product.timeOptions.bidStopTime).format("DD/MM/yyyy à HH:mm") }}.
 				</div>
 
@@ -27,7 +27,7 @@
 			<v-card-text>
 				<v-row>
 					<v-col v-for="index in maxBids" :key="index" class="pb-1 pt-0">
-						<v-chip class="glass black--text">
+						<v-chip class="glass text-black">
 							{{ randomUsers[Math.floor(Math.random() * randomUsers.length)] }} {{ Math.round(product.prices.actual * (Math.random() * 5)).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€
 						</v-chip>
 					</v-col>
@@ -59,7 +59,7 @@
 								<v-tooltip bottom color="glass">
 									<template v-slot:activator="{ on, attrs }">
 										<v-btn text icon color="accent" v-bind="attrs" v-on="on">
-											<v-icon small>far fa-bell</v-icon>
+											<v-icon size="small">far fa-bell</v-icon>
 										</v-btn>
 									</template>
 									<span>Créer un suivi</span>
@@ -69,7 +69,7 @@
 								<v-tooltip bottom color="glass">
 									<template v-slot:activator="{ on, attrs }">
 										<v-btn text icon color="pink" v-bind="attrs" v-on="on">
-											<v-icon small>far fa-heart</v-icon>
+											<v-icon size="small">far fa-heart</v-icon>
 										</v-btn>
 									</template>
 									<span>Ajouter aux favoris</span>
@@ -86,10 +86,10 @@
 				<v-row>
 					<v-col cols="12" md="4">
 						<v-card class="mx-auto">
-							<v-img class="white--text align-end" height="200px" :src="product.img.main" style="background-color: black;">
-								<v-card-title class="pb-0" v-bind:class="{'black--text': !product.img.main}">{{ product.name }}</v-card-title>
+							<v-img class="text-white align-end" height="200px" :src="product.img.main" style="background-color: black;">
+								<v-card-title class="pb-0" v-bind:class="{'text-black': !product.img.main}">{{ product.name }}</v-card-title>
 
-								<v-card-text align="left" v-bind:class="{'black--text': !product.img.main}">
+								<v-card-text align="left" v-bind:class="{'text-black': !product.img.main}">
 									<div class="text-subtitle-1 overline">
 										<span class="caption">Prix actuel</span> {{ Number(product.prices.actual).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€ • <span class="caption">Prix de départ</span> {{ Number(product.prices.start).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€
 									</div>
