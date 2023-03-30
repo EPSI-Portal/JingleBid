@@ -1,10 +1,23 @@
-# JingleBid
+# 🎅🏽 JingleBid
 
-## Stack : Vue x Vite ; Firebase ; Vuetify
+## 🧱 Stack : Vue x Vite ; Firebase ; Vuetify
 
+### 🧩 Versions
 
-### Installation
+Node: **Version 19**
+
+Yarn/NPM: Latest
+
+### 🏗️ Installation
 
 - ``yarn install``
 
+### 👨🏽‍💻 Utilisation
+
+#### Développement
+
 - ``yarn dev``
+
+#### Production
+
+- ``yarn serve``
