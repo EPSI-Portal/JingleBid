@@ -15,6 +15,9 @@ loadFonts();
 
 const app = createApp(App);
 
+app.provide("$_moment", moment_);
+app.provide("$_axios", axios);
+
 app.provide("$db", db);
 app.provide("$firebase", firebase);
 app.provide("$auth", auth);
