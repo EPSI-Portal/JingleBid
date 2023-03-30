@@ -12,20 +12,20 @@
 								{{ item.icon }}
 							</v-icon>
 
-							<h5 class="primary--text">{{ item.name }}</h5>
+							<h5 class="text-primary">{{ item.name }}</h5>
 						</template>
 						<template v-else>
 							<v-icon color="accent" v-bind:large="mdAndUp" style="cursor: pointer;" @click="$router.push(item.url)">
 								{{ item.icon }}
 							</v-icon>
 
-							<h5 class="grey--text">{{ item.name }}</h5>
+							<h5 class="text-grey">{{ item.name }}</h5>
 						</template>
 					</v-col>
 				</v-row>
 
 				<div class="userIcons">
-					<v-col cols="12" class="mt-12 pt-12" v-if="user">
+					<v-col cols="12" class="mt-12 pt-12" v-if="user !== null">
 						<v-icon v-if="String($route.path) == '/account'" color="primary" v-bind:large="mdAndUp" style="cursor: pointer;">
 							far fa-user-circle
 						</v-icon>
@@ -36,7 +36,7 @@
 						<v-spacer class="mt-3"></v-spacer>
 						<v-tooltip right>
 							<template v-slot:activator="{ on, attrs }">
-								<v-icon v-bind="attrs" v-on="on" :class="{'accent--text': String($route.path) != '/profile', 'primary--text': String($route.path) == '/profile'}" style="cursor: pointer;" @click="$router.push('/profile')">
+								<v-icon v-bind="attrs" v-on="on" :class="{'text-accent': String($route.path) != '/profile', 'text-primary': String($route.path) == '/profile'}" style="cursor: pointer;" @click="$router.push('/profile')">
 									far fa-address-card
 								</v-icon>
 							</template>
@@ -186,7 +186,7 @@
 
 	/* Glassmorphism card effect */
 	.glasscard {
-		background: rgba( 255, 255, 255, 0.65 )!important;
+		background: rgba( 255, 255, 255, 0.35 )!important;
 		box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )!important;
 		backdrop-filter: blur( 4px )!important;
 		-webkit-backdrop-filter: blur( 4px )!important;
@@ -207,6 +207,7 @@
 
 <script>
 import { useDisplay } from 'vuetify';
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 export default {
 	name: 'App',
@@ -219,7 +220,7 @@ export default {
 			{ name: 'Ajouter une enchère', icon: 'fas fa-plus', url: '/createBid' }
 		],
 
-		user: {}
+		user: null
 	}),
 
 	setup () {
@@ -230,12 +231,23 @@ export default {
 
 	created() {
 		this.user = this.$auth.currentUser;
+
+		onAuthStateChanged(getAuth(), (user) => {
+			if (user) this.user = user;
+			else this.user = null;
+		});
+	},
+
+	watch: {
+		user: function () {
+			console.log(this.user);
+		}
 	},
 
 	methods: {
 		async logout() {
 			try {
-				await this.$firebase.auth().signOut();
+				await signOut(getAuth());
 				this.$router.push('/login');
 			} catch (err) {
 				console.log(err);
