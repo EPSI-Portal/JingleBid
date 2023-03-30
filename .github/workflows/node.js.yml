@@ -11,8 +11,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 19.x
+    - name: Install Yarn
+      run: npm install -D yarn@latest
+    - name: Install Vite CLI
+      run: yarn install -D vite@latest
     - name: Install dependencies
-      run: npm install
+      run: yarn install
 
   build:
     runs-on: ubuntu-latest
