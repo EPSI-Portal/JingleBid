@@ -13,10 +13,10 @@ jobs:
         node-version: 19.x
     - name: Install Yarn
       run: npm install -D yarn@latest
-    - name: Install Vite CLI
-      run: yarn add -D vite@latest
     - name: Install dependencies
       run: yarn install
+    - name: Install Vite CLI
+      run: yarn add -D vite@latest
 
   build:
     runs-on: ubuntu-latest
@@ -34,5 +34,7 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+    - name: Install dependencies
+      run: yarn install
     - name: Build
       run: yarn build
