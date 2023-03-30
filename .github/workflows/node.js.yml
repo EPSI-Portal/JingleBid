@@ -14,7 +14,7 @@ jobs:
     - name: Install Yarn
       run: npm install -D yarn@latest
     - name: Install Vite CLI
-      run: yarn install -D vite@latest
+      run: yarn add -D vite@latest
     - name: Install dependencies
       run: yarn install
 
