@@ -34,22 +34,23 @@
 						</v-icon>
 
 						<v-spacer class="mt-3"></v-spacer>
-						<v-tooltip right>
-							<template v-slot:activator="{ on, attrs }">
-								<v-icon v-bind="attrs" v-on="on" :class="{'text-accent': String($route.path) != '/profile', 'text-primary': String($route.path) == '/profile'}" style="cursor: pointer;" @click="$router.push('/profile')">
+
+						<v-tooltip text="Accéder au profil" location="end">
+							<template v-slot:activator="{ props }">
+								<v-icon v-bind="props" :class="{'text-accent': String($route.path) != '/profile', 'text-primary': String($route.path) == '/profile'}" style="cursor: pointer;" @click="$router.push('/profile')">
 									far fa-address-card
 								</v-icon>
 							</template>
-							<span>Accéder au profil</span>
 						</v-tooltip>
+
 						<v-spacer class="my-2"></v-spacer>
-						<v-tooltip right>
-							<template v-slot:activator="{ on, attrs }">
-								<v-icon v-bind="attrs" v-on="on" color="accent" style="cursor: pointer;" @click="logout()">
+
+						<v-tooltip text="Se déconnecter" location="end">
+							<template v-slot:activator="{ props }">
+								<v-icon v-bind="props" style="cursor: pointer;" @click="logout()">
 									fa fa-sign-out
 								</v-icon>
 							</template>
-							<span>Se déconnecter</span>
 						</v-tooltip>
 					</v-col>
 					<v-col cols="12" class="mt-12 pt-12" v-else>
@@ -65,9 +66,11 @@
 		</div>
 
 		<v-main class="content">
-			<transition name="fade" mode="out-in">
-				<router-view class="router-view"></router-view>
-			</transition>
+			<router-view v-slot="{ Component }" class="router-view">
+				<transition name="fade" mode="out-in">
+					<component :is="Component" />
+				</transition>
+			</router-view>
 		</v-main>
 	</v-app>
 </template>
