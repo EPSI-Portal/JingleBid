@@ -180,16 +180,16 @@
 		background-size: cover;
 		background-attachment: fixed;
 
-		background-color: #02aae5;
+		background-color: #f2e8cf;
 
 		background-image:
-			radial-gradient(at 47% 33%, hsl(211.89, 100%, 50%) 0, transparent 59%),
-			radial-gradient(at 82% 65%, hsl(19.23, 100%, 85%) 0, transparent 55%);
+			radial-gradient(at 80% 30%, rgb(236, 210, 198) 30%, transparent 60%),
+			radial-gradient(at 100% 100%, hsl(19.23, 50%, 85%) 30%, transparent 60%);
 	}
 
 	/* Glassmorphism card effect */
 	.glasscard {
-		background: rgba( 255, 255, 255, 0.35 )!important;
+		background: rgb(255, 255, 255)!important;
 		box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )!important;
 		backdrop-filter: blur( 4px )!important;
 		-webkit-backdrop-filter: blur( 4px )!important;
