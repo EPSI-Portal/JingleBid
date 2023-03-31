@@ -34,24 +34,24 @@
 
 						<v-row class="overline" style="font-size: 1.2em!important;">
 							<v-col cols="8" class="py-0">
-								<span class="caption" style="font-size: 1em!important;">Prix actuel</span>
+								<span class="text-caption" style="font-size: 1em!important;">Prix actuel</span>
 							</v-col>
 							<v-col cols="4" align="right" class="py-0">
 								{{ Number(data.prices.actual).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€
 							</v-col>
 
 							<v-col cols="8" class="py-0">
-								<span class="caption" style="font-size: 1em!important;">Prix de départ</span>
+								<span class="text-caption" style="font-size: 1em!important;">Prix de départ</span>
 							</v-col>
 							<v-col cols="4" align="right" class="py-0">
 								{{ Number(data.prices.start).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€
 							</v-col>
 
 							<v-col cols="8" class="py-0">
-								<span class="caption" style="font-size: 1em!important;">Temps restant</span>
+								<span class="text-caption" style="font-size: 1em!important;">Temps restant</span>
 							</v-col>
 							<v-col cols="4" align="right" class="py-0">
-								{{ $moment().to(data.timeOptions.bidStopTime, true) }}
+								{{ $_moment().to(data.timeOptions.bidStopTime, true) }}
 							</v-col>
 						</v-row>
 
@@ -117,6 +117,7 @@
 
 	export default {
 		name: "ProductPage",
+		inject: ["$models", "$_moment"],
 
 		props: {
 			id: {

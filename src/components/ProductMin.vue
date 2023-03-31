@@ -72,7 +72,7 @@
 
 								<v-card-text align="left" v-bind:class="{'text-black': !product.img.main}">
 									<div class="text-subtitle-1 overline">
-										<span class="caption">Prix actuel</span> {{ Number(product.prices.actual).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€ • <span class="caption">Prix de départ</span> {{ Number(product.prices.start).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€
+										<span class="text-caption">Prix actuel</span> {{ Number(product.prices.actual).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€ • <span class="text-caption">Prix de départ</span> {{ Number(product.prices.start).toLocaleString(undefined, {minimumFractionDigits: 2}) }}€
 									</div>
 
 									<div>{{ product.shortDesc }}</div>
