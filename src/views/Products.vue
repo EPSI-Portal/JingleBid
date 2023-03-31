@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<HeaderComponent title="Enchères en cours"></HeaderComponent>
+		<HeaderComponent title="Produits"></HeaderComponent>
 
 		<v-row>
 			<v-col cols="12">
@@ -10,24 +10,6 @@
 					</v-col>
 				</v-row>
 			</v-col>
-			<!--<v-col cols="12" md="3" order="first" order-md="last">
-				<v-row>
-					<v-col cols="12">
-						<v-card>
-							<v-card-text>
-								<h1 class="font-weight-regular text-black">Filtres</h1>
-							</v-card-text>
-						</v-card>
-					</v-col>
-
-					<v-col cols="12">
-						<v-card class="glasscard">
-							<v-card-text>
-							</v-card-text>
-						</v-card>
-					</v-col>
-				</v-row>
-			</v-col>-->
 		</v-row>
 	</div>
 </template>
@@ -42,7 +24,7 @@ import Product from "@/components/Product.vue";
 
 export default {
 	name: "ProductsPage",
-	inject: ["$models"],
+	inject: ["$models", "$_axios"],
 
 	components: {
 		HeaderComponent,
@@ -60,17 +42,18 @@ export default {
 		}
 	},
 
-	created() {
-		//TODO: Get products
-		/*this.$db.collection("products").onSnapshot((res) => {
-			res.forEach((doc) => {
+	async created() {
+		try {
+			const response = await this.$_axios.get(import.meta.env.VITE_API_URL + "/product");
+			response.data.forEach((doc) => {
 				this.data.push({
 					...this.$models.bid,
-					...doc.data(),
-					id: doc.id
+					...doc
 				});
 			});
-		});*/
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }
 </script>

@@ -219,8 +219,8 @@ export default {
 	data: () => ({
 		items: [
 			{ name: 'Accueil', icon: 'fa fa-list-alt', url: '/' },
-			{ name: 'Enchères en cours', icon: 'fa fa-th', url: '/products' },
-			{ name: 'Ajouter une enchère', icon: 'fas fa-plus', url: '/createBid' }
+			{ name: 'Produits', icon: 'fa fa-th', url: '/products' },
+			{ name: 'Ajouter un produit', icon: 'fas fa-plus', url: '/createBid' }
 		],
 
 		user: null
@@ -239,12 +239,6 @@ export default {
 			if (user) this.user = user;
 			else this.user = null;
 		});
-	},
-
-	watch: {
-		user: function () {
-			console.log(this.user);
-		}
 	},
 
 	methods: {
