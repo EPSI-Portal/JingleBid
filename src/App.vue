@@ -47,7 +47,7 @@
 
 						<v-tooltip text="Se déconnecter" location="end">
 							<template v-slot:activator="{ props }">
-								<v-icon v-bind="props" style="cursor: pointer;" @click="logout()">
+								<v-icon v-bind="props" style="cursor: pointer;" @click="logout()" color="accent">
 									fa fa-sign-out
 								</v-icon>
 							</template>
@@ -219,7 +219,7 @@ export default {
 	data: () => ({
 		items: [
 			{ name: 'Accueil', icon: 'fa fa-list-alt', url: '/' },
-			{ name: 'Produits', icon: 'fa fa-th', url: '/products' },
+			{ name: 'Enchères en cours', icon: 'fa fa-th', url: '/products' },
 			{ name: 'Ajouter une enchère', icon: 'fas fa-plus', url: '/createBid' }
 		],
 
