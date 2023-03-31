@@ -3,7 +3,7 @@ export let appConfig = {
 
 	name: "TriBidO",
 	URL: "",
-	logoUrl: "tbo-heart.png",
+	logoUrl: "logoNoel.png",
 
 	transitionOpen: "https://hostcrush.cloud/echange/VueDesignProps/Transitions/Rounded-1-Close.png",
 	transitionOpenLazy: "https://hostcrush.cloud/echange/VueDesignProps/Transitions/Rounded-1-Close_Lazy.png",

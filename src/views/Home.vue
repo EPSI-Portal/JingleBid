@@ -3,7 +3,7 @@
 		<HeaderComponent/>
 
 		<h2 class="text-h5 text-white">Bonjour {{ user.displayName }},</h2>
-		<h1 class="text-h4 font-weight-light text-white">Bienvenue sur TriBidO !</h1>
+		<h1 class="text-h4 font-weight-light text-white">Bienvenue sur JingleBid  !</h1>
 
 		<v-row>
 			<v-col cols="12">
@@ -76,41 +76,41 @@ export default {
 
 			categories: [
 				{
-					label: 'Classiques',
-					icon: 'fas fa-ghost',
-					color: '#55efc4',
-					textColor: '#00b894'
+					label: 'Jouets',
+					icon: 'fas fa-gift',
+					color: '#FA3A3A',
+					textColor: '#FFAE9D'
 				},
 				{
-					label: 'Jeux de table',
-					icon: 'fas fa-chess-king',
-					color: '#81ecec',
-					textColor: '#00cec9'
+					label: 'Bonbons/Chocolats',
+					icon: 'fas fa-candy-cane',
+					color: '#FD7676',
+					textColor: '#FFAE9D'
 				},
 				{
-					label: 'Plein air',
-					icon: 'fas fa-table-tennis',
-					color: '#48dbfb',
-					textColor: '#0abde3'
+					label: 'Vêtements',
+					icon: 'fas fa-socks',
+					color: '#FA3A3A',
+					textColor: '#FFAE9D'
 				},
 				{
-					label: 'Jeux vidéos',
-					icon: 'fas fa-gamepad',
-					color: '#00d2d3',
-					textColor: '#01a3a4'
+					label: 'Décorations',
+					icon: 'fas fa-sleigh',
+					color: '#FD7676',
+					textColor: '#FFAE9D'
 				},
 				{
-					label: 'Jeux de rôles',
-					icon: 'fas fa-dungeon',
-					color: '#fab1a0',
-					textColor: '#e17055'
+					label: 'Sapins',
+					icon: 'fas fa-tree',
+					color: '#FA3A3A',
+					textColor: '#FFAE9D'
 				},
 				{
-					label: 'Enchères flash',
-					icon: 'fas fa-shipping-fast',
-					color: '#ff7675',
-					textColor: '#d63031'
-				}
+					label: 'Films/Livres',
+					icon: 'fas fa-film',
+					color: '#FD7676',
+					textColor: '#FFAE9D'
+				},
 			],
 		}
 	},
