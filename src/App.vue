@@ -241,12 +241,6 @@ export default {
 		});
 	},
 
-	watch: {
-		user: function () {
-			console.log(this.user);
-		}
-	},
-
 	methods: {
 		async logout() {
 			try {
