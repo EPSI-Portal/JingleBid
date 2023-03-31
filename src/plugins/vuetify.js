@@ -10,6 +10,18 @@ import { aliases, fa } from 'vuetify/iconsets/fa';
 import { mdi } from 'vuetify/iconsets/mdi';
 import { fr } from 'vuetify/locale';
 
+const jingleBidTheme = {
+	dark: false,
+	colors: {
+		primary: '#0077FE',
+		accent: '#FFCAB1',
+		secondary: '#02AAE5',
+		success: '#3AF2A2',
+		info: '#03DDCB',
+		warning: '#FB8C00',
+		error: '#FF6C5C',
+	},
+};
 
 export default createVuetify({
 	// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
@@ -29,18 +41,9 @@ export default createVuetify({
 	},
 
 	theme: {
-		defaultTheme: 'light',
+		defaultTheme: 'jingleBidTheme',
 		themes: {
-			dark: false,
-			colors: {
-				primary: '#0077FE',
-				accent: '#FFCAB1',
-				secondary: '#02AAE5',
-				success: '#3AF2A2',
-				info: '#03DDCB',
-				warning: '#FB8C00',
-				error: '#FF6C5C',
-			},
-		},
+		jingleBidTheme,
+		}
 	},
 });
