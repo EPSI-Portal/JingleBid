@@ -20,7 +20,7 @@
 	}
 
 	.mainD {
-		padding-bottom: 60px;
+		padding-bottom: 30px;
 	}
 
 	.custom-shape-divider-bottom-1632606514 {
