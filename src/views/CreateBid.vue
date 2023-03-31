@@ -14,7 +14,7 @@
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert type="info" variant="tonal" color="white">
+				<v-alert type="info" variant="tonal" color="primary">
 					Ajoutez des détails tels que la marque, la couleur, la taille, les caractéristiques, l'état, etc.
 				</v-alert>
 			</v-col>
@@ -33,7 +33,7 @@
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert type="info" variant="tonal" color="white">
+				<v-alert type="info" variant="tonal" color="primary">
 					Les acheteurs ont besoin de ces détails pour trouver votre objet.
 				</v-alert>
 			</v-col>
@@ -55,7 +55,7 @@
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert type="info" variant="tonal" color="white">
+				<v-alert type="info" variant="tonal" color="primary">
 					Utilisez cette description pour accrocher l'acheteur.
 				</v-alert>
 			</v-col>
@@ -72,7 +72,7 @@
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert type="info" variant="tonal" color="white">
+				<v-alert type="info" variant="tonal" color="primary">
 					Décrivez les caractéristiques uniques de votre objet, ses défauts et la raison pour laquelle vous le vendez.
 				</v-alert>
 			</v-col>
@@ -82,23 +82,15 @@
 					<v-card-title>Images</v-card-title>
 
 					<v-card-text>
-						<v-row>
-							<v-col cols="12" sm="6">
-								<v-file-input truncate-length="15" variant="underlined" v-model="importIMG.main" @change="uploadMainImage" accept="image/*" class="mt-0 pt-0"></v-file-input>
-								<v-img v-if="bid.img.main" :src="bid.img.main" contain></v-img>
-							</v-col>
-							<v-col cols="12" sm="6">
-								<v-file-input truncate-length="15" variant="underlined" v-model="importIMG.secondary" @change="uploadSecondaryImage" accept="image/*" class="mt-0 pt-0"></v-file-input>
-								<v-img v-if="bid.img.secondary" :src="bid.img.secondary" contain></v-img>
-							</v-col>
-						</v-row>
+						<v-text-field variant="underlined" v-model="bid.image" prepend-icon="fas fa-paperclip" class="mt-0 pt-0"></v-text-field>
+						<v-img v-if="bid.image" :src="bid.image" contain></v-img>
 					</v-card-text>
 				</v-card>
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert type="info" variant="tonal" color="white">
-					Vous pouvez ajouter jusqu'à 2 photos pour inspirer confiance aux acheteurs.
+				<v-alert type="info" variant="tonal" color="primary">
+					Vous pouvez ajouter une photo pour inspirer confiance aux acheteurs.
 				</v-alert>
 			</v-col>
 
@@ -115,9 +107,9 @@
 					<v-card-text>
 						<v-row>
 							<v-col cols="4">
-								<v-text-field variant="underlined" class="mt-0 pt-0 col-6 pl-1" v-model="bid.prices.actual" type=" number" suffix="€" prepend-icon="fa fa-euro" label="Prix de départ"></v-text-field>
+								<v-text-field variant="underlined" class="mt-0 pt-0 col-6 pl-1" v-model="bid.price" type=" number" suffix="€" prepend-icon="fa fa-euro" label="Prix de départ"></v-text-field>
 							</v-col>
-							<v-col cols="12">
+							<!--<v-col cols="12">
 
 								<v-row class="px-2">
 									<v-col cols="12" sm="6">
@@ -157,14 +149,14 @@
 									</v-col>
 								</v-row>
 
-							</v-col>
+							</v-col>-->
 						</v-row>
 					</v-card-text>
 				</v-card>
 			</v-col>
 
 			<v-col cols="12" sm="3" class="mx-4">
-				<v-alert type="info" variant="tonal" color="white">
+				<v-alert type="info" variant="tonal" color="primary">
 					Fixez un prix de départ pour votre enchère et laissez jouer la concurrence.
 				</v-alert>
 			</v-col>
@@ -186,11 +178,10 @@
 
 <script>
 	import HeaderComponent from "@/components/HeaderComponent.vue";
-	import { v4 as uuidv4 } from 'uuid';
 
 	export default {
 		name: "CreateBidPage",
-		inject: ["$models"],
+		inject: ["$models", "$_axios"],
 
 		components: {
 			HeaderComponent
@@ -245,56 +236,20 @@
 				return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
 			},
 
-			submit() {
-				this.bid.timeOptions.bidStartTime = new Date().getTime();
-				this.bid.timeOptions.createdAt = new Date().getTime();
-
-				this.$db.collection("products").add({
-					...this.bid,
-					creator: this.$firebase.auth().currentUser.uid
-				}).then(res => {
-					this.$router.push(`${res.id}`);
-				});
-			},
-
-			uploadMainImage(e){
-				if(!e) return;
-				this.uploadImage(e, "main");
-			},
-			uploadSecondaryImage(e){
-				if(!e) return;
-				this.uploadImage(e, "secondary");
-			},
-			uploadImage(file, importType){
-				if(!file) return;
-
-				if(!file.type.includes("image")) return this.importIMG[importType] = null;
-
-				var storage = this.$firebase.app().storage("gs://tribido-236f1.appspot.com");
-
-				var uploadTask = storage.ref(`${this.$firebase.auth().currentUser.uid}/bid_src/${uuidv4()}`).put(file);
-
-				uploadTask.on('state_changed',
-					(snapshot) => {
-						this.imagesLoading = true;
-
-						var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-
-						if(progress > 80) {
-							this.imagesLoading = "success";
-						}
-					},
-					(error) => {
-						console.log(error);
-					},
-					() => {
-						uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-							this.bid.img[importType] = downloadURL;
-
-							this.imagesLoading = false;
-						});
-					}
-				);
+			async submit() {
+				try {
+					await this.$_axios.post(import.meta.env.VITE_API_URL + "/product", {
+						"name": this.bid.name,
+						"condition": this.bid.condition,
+						"image": this.bid.image,
+						"longDesc": this.bid.longDesc,
+						"shortDesc": this.bid.shortDesc,
+						"price": Number(this.bid.price),
+						"createdAt": (new Date()).getTime().toString()
+					});
+				} catch (error) {
+					console.error(error);
+				}
 			}
 		}
 	}
