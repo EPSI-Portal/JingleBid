@@ -3,7 +3,7 @@
 		<!-- Sidebar -->
 		<div class="sidebar">
 			<div class="scrollbar" align="center">
-				<v-img src="tbo-all.png" width="10vw"></v-img>
+				<v-img src="logoNoel.png" width="4vw"></v-img>
 
 				<v-row class="mt-5">
 					<v-col v-for="item in items" :key="item.name" cols="12" class="my-3">
