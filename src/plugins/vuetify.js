@@ -13,9 +13,9 @@ import { fr } from 'vuetify/locale';
 const jingleBidTheme = {
 	dark: false,
 	colors: {
-		primary: '#0077FE',
+		primary: '#386641',
 		accent: '#FFCAB1',
-		secondary: '#02AAE5',
+		secondary: '#6a994e',
 		success: '#3AF2A2',
 		info: '#03DDCB',
 		warning: '#FB8C00',

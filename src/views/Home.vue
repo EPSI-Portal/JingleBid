@@ -78,37 +78,37 @@ export default {
 				{
 					label: 'Jouets',
 					icon: 'fas fa-gift',
-					color: '#FA3A3A',
+					color: '#bc4749',
 					textColor: '#FFAE9D'
 				},
 				{
 					label: 'Bonbons/Chocolats',
 					icon: 'fas fa-candy-cane',
-					color: '#FD7676',
+					color: '#d15e60',
 					textColor: '#FFAE9D'
 				},
 				{
 					label: 'Vêtements',
 					icon: 'fas fa-socks',
-					color: '#FA3A3A',
+					color: '#bc4749',
 					textColor: '#FFAE9D'
 				},
 				{
 					label: 'Décorations',
 					icon: 'fas fa-sleigh',
-					color: '#FD7676',
+					color: '#d15e60',
 					textColor: '#FFAE9D'
 				},
 				{
 					label: 'Sapins',
 					icon: 'fas fa-tree',
-					color: '#FA3A3A',
+					color: '#bc4749',
 					textColor: '#FFAE9D'
 				},
 				{
 					label: 'Films/Livres',
 					icon: 'fas fa-film',
-					color: '#FD7676',
+					color: '#d15e60',
 					textColor: '#FFAE9D'
 				},
 			],
