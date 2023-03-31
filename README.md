@@ -8,7 +8,16 @@ Nous avons été commissionnés par la grande firme "Internationale Holidays Inc
 
 Pour accéder aux enchères, les utilisateurs devront créer un compte. Une fois connectés, ils pourront accéder à différentes catégories telles que des bonbons, des jouets, etc. Ils pourront également mettre en vente leurs produits. L'application est soutenue par l'API JingleBidAPI, qui assure la sécurité et la stabilité des transactions.
 
-> Lien de JingleBidAPI : https://github.com/EPSI-Portal/JingleBidAPI
+> Lien de l'API JingleBidAPI : https://github.com/EPSI-Portal/JingleBidAPI
+>
+> Rendu projet: 31 mars
+
+## 👥 Groupe 3
+
+- CETIN Begum
+- CASTAYBERT Stanislas
+- DURET Anthony
+- REDON Alexandre
 
 ### 🧩 Versions
 
